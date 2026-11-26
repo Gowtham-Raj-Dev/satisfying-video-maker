@@ -1,11 +1,25 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import AdSenseScript from "@/components/AdSenseScript";
 import "./globals.css";
+import { GAMES_REGISTRY } from "@/lib/games";
 import { SITE } from "@/lib/site";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
 export const viewport: Viewport = {
-  themeColor: "#060813",
+  themeColor: "#0B0B0C",
   width: "device-width",
   initialScale: 1,
 };
@@ -13,11 +27,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Satisfying Video Maker: Free ASMR & Physics Shorts Generator",
-    template: `%s | ${SITE.brand}`,
+    default: SITE.title,
+    template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
-  applicationName: SITE.fullName,
+  applicationName: SITE.name,
   authors: [{ name: SITE.creator, url: SITE.creatorUrl }],
   creator: SITE.creator,
   publisher: SITE.brand,
@@ -38,17 +52,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE.url,
-    siteName: SITE.fullName,
-    title: "Satisfying Video Maker: Free ASMR & Physics Shorts Generator",
+    siteName: SITE.name,
+    title: SITE.title,
     description: SITE.description,
-    locale: "en_IN",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Satisfying Video Maker by CodeLove" }],
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Satisfying Video Maker: Free ASMR & Physics Shorts Generator",
+    title: SITE.title,
     description: SITE.description,
-    images: ["/og.png"],
   },
 };
 
@@ -72,8 +84,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${SITE.url}/#website`,
       url: `${SITE.url}/`,
-      name: "Satisfying Video Maker",
-      alternateName: ["Satisfying Video Generator", "Marble Race Maker", "ASMR Shorts Maker"],
+      name: SITE.name,
       description: SITE.description,
       inLanguage: "en",
       creator: { "@id": "https://gowtham.codelove.in/#person" },
@@ -82,22 +93,19 @@ const jsonLd = {
     {
       "@type": "WebApplication",
       "@id": `${SITE.url}/#app`,
-      name: "Satisfying Video Maker",
-      alternateName: "Free ASMR & Physics Simulation Shorts Generator",
+      name: SITE.name,
       url: `${SITE.url}/`,
       description: SITE.description,
       applicationCategory: "MultimediaApplication",
-      operatingSystem: "Any (web browser)",
-      browserRequirements: "Requires modern browser with WebGL and HTML5 Canvas",
+      operatingSystem: "Any (modern web browser)",
       isAccessibleForFree: true,
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       featureList: [
-        "Bouncing Ball inside Rotating Shapes with Musical ASMR Chimes",
-        "3D Country Marble Race Course with Live Leaderboard",
-        "1080x1920 (9:16) Vertical Video Export for YouTube Shorts, Reels & TikTok",
-        "60 FPS High Definition MP4 video recording in browser",
-        "100% Free with No Watermark and No Sign-up required",
-        "Rich color themes: Cyber Neon, Rainbow Candy, Sunset Gold, Acid Matrix",
+        `${GAMES_REGISTRY.length} Interactive Physics, Multiply, Marble Race, Sand, Liquid, Gravity & Chain Reaction Simulations`,
+        "Real-time Web Audio API ASMR Synthesizer",
+        "WebCodecs H.264 + mp4-muxer Local Browser MP4 Export",
+        "Custom Aspect Ratios (9:16, 16:9, 1:1) and Live Text Overlays",
+        "Zero Watermark, No Mandatory Account, Local IndexedDB Creations Library",
       ],
       creator: { "@id": "https://gowtham.codelove.in/#person" },
       publisher: { "@id": "https://codelove.in/#organization" },
@@ -108,15 +116,13 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        {/* Google AdSense site verification */}
         <meta name="google-adsense-account" content="ca-pub-1282068947061740" />
       </head>
-      <body className="bg-[#060813] text-white min-h-screen flex flex-col antialiased">
+      <body className="bg-[#0B0B0C] text-[#F5F5F5] min-h-screen flex flex-col antialiased selection:bg-[#C4FF2E] selection:text-[#0B0B0C]">
         {children}
-        {/* Load AdSense, Analytics and Tracker smoothly after hydration */}
         <AdSenseScript client="ca-pub-1282068947061740" />
         <Script src="https://admin.codelove.in/t.js" strategy="afterInteractive" />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-E7XZ96YCVC" strategy="afterInteractive" />

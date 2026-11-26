@@ -1,291 +1,304 @@
 import React from "react";
 import Link from "next/link";
-import {
-  Sparkles, Video, Trophy, Hourglass, Hammer, ShieldAlert,
-  Orbit, ArrowRight, Play, Flame, Music, CheckCircle2, ShieldCheck,
-  Zap, Share2
-} from "lucide-react";
-import { SITE } from "@/lib/site";
-import { GAMES_LIST } from "@/lib/games";
+import { ArrowRight, Play, ShieldCheck, Sliders, Video, Cpu, Ban, UserX } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import HomeInteractiveHero from "@/components/HomeInteractiveHero";
+import GameCard from "@/components/GameCard";
+import MiniSimulationPreview from "@/components/MiniSimulationPreview";
+import { CATEGORIES } from "@/lib/defaults";
+import { GAMES_REGISTRY, getGameById } from "@/lib/games";
 
 export default function HomePage() {
+  const trendingGames = GAMES_REGISTRY.filter((g) => g.trending).slice(0, 6);
+  const videoExamples = [
+    {
+      game: getGameById("ring-escape"),
+      format: "1080×1920 · 60 FPS",
+      caption: "Can the ball escape all 7 rings?",
+      sub: "Crystal Ping · Cyber Neon",
+    },
+    {
+      game: getGameById("country-marble-race"),
+      format: "1080×1920 · 60 FPS",
+      caption: "Which country wins?",
+      sub: "Wood Tap · Live Leaderboard",
+    },
+    {
+      game: getGameById("hydraulic-press"),
+      format: "1080×1920 · 60 FPS",
+      caption: "100-Ton Hydraulic Press",
+      sub: "Hydraulic Compression · Shards",
+    },
+  ];
+
   return (
-    <div className="w-full min-h-screen bg-[#060813] text-white flex flex-col selection:bg-cyan-500 selection:text-black">
-      
-      {/* Top Header / Navigation */}
-      <header className="sticky top-0 z-50 w-full bg-[#060813]/85 backdrop-blur-xl border-b border-slate-800/80 px-4 sm:px-8 py-3.5 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 text-white font-black text-lg tracking-tight">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-400 to-fuchsia-500 flex items-center justify-center shadow-md shadow-cyan-500/20">
-            <Sparkles className="w-4 h-4 text-black" />
-          </div>
-          <span>CodeLove <span className="text-cyan-400">Satisfying</span></span>
-        </Link>
+    <div className="min-h-screen flex flex-col bg-[#0B0B0C] text-[#F5F5F5]">
+      <Navbar />
 
-        <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-300">
-          <a href="#games" className="hover:text-cyan-400 transition">Game Modes</a>
-          <a href="#workflow" className="hover:text-cyan-400 transition">How It Works</a>
-          <a href="#viral" className="hover:text-cyan-400 transition">Viral Tips</a>
-          <a href="#faq" className="hover:text-cyan-400 transition">FAQ</a>
-          <a href="https://videomaker.codelove.in" target="_blank" rel="noopener" className="hover:text-fuchsia-400 transition flex items-center gap-1">
-            AI Video Maker <span className="text-xs">↗</span>
-          </a>
-        </nav>
+      <main className="flex-1">
+        {/* Hero + Live Interactive Simulation */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-14 lg:pt-14 lg:pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5 space-y-5">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#141416] border border-[#29292D] text-[11px] font-medium text-[#A1A1AA]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C4FF2E]" />
+                Browser Physics Playground &amp; MP4 Studio
+              </div>
 
-        <div className="flex items-center gap-3">
-          <Link
-            href="/studio/"
-            className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black text-xs font-black tracking-wide shadow-md hover:shadow-cyan-500/25 hover:scale-105 active:scale-95 transition flex items-center gap-1.5"
-          >
-            LAUNCH STUDIO <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-      </header>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-[#F5F5F5] leading-[1.12]">
+                Make Something Satisfying.
+              </h1>
 
-      {/* Hero Section */}
-      <section className="relative w-full max-w-6xl mx-auto px-4 pt-16 pb-20 text-center flex flex-col items-center">
-        
-        {/* Subtle Background Radial Glow */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-cyan-500/10 via-fuchsia-500/10 to-transparent blur-3xl pointer-events-none -z-10" />
+              <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed max-w-lg">
+                Play with physics. Create mesmerizing simulations. Export beautiful videos.
+              </p>
 
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-6">
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-          100% Free · No Watermark · Instant 1080×1920 60FPS MP4 Export
-        </div>
-
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-white max-w-4xl leading-[1.1] mb-6">
-          Satisfying <span className="bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 bg-clip-text text-transparent">Video Maker</span>
-        </h1>
-
-        <p className="max-w-2xl text-slate-300 text-base sm:text-xl leading-relaxed mb-8">
-          The ultimate browser studio for viral ASMR physics simulations, country marble races, and bouncing ball loops. Recorded in 60FPS vertical 9:16 format for YouTube Shorts, Reels & TikTok.
-        </p>
-
-        {/* Hero Actions */}
-        <div className="flex flex-col sm:flex-row items-center gap-3.5 mb-14">
-          <Link
-            href="/studio/"
-            className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-fuchsia-600 text-black font-black text-base shadow-xl shadow-cyan-500/20 hover:scale-105 active:scale-95 transition flex items-center justify-center gap-2.5"
-          >
-            <Play className="w-5 h-5 fill-black" />
-            OPEN VIDEO STUDIO (FREE)
-          </Link>
-          <a
-            href="#games"
-            className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-slate-900 border border-slate-800 text-slate-300 font-bold text-base hover:bg-slate-800 hover:text-white transition flex items-center justify-center gap-2"
-          >
-            Explore 6 Games ↓
-          </a>
-        </div>
-
-        {/* Feature Highlights Pills */}
-        <div className="w-full max-w-4xl grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {[
-            { label: "1080×1920 (9:16)", sub: "Shorts & Reels Ready" },
-            { label: "60 FPS Video", sub: "Silky Smooth Render" },
-            { label: "ASMR Synthesizer", sub: "Crystal Chimes & FX" },
-            { label: "Zero Server Wait", sub: "Runs in Your Browser" },
-          ].map((stat, i) => (
-            <div key={i} className="p-3.5 rounded-2xl bg-slate-900/50 border border-slate-800/80 text-center">
-              <div className="text-sm font-black text-white">{stat.label}</div>
-              <div className="text-xs text-slate-400">{stat.sub}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Game Catalog Section */}
-      <section id="games" className="w-full max-w-7xl mx-auto px-4 py-16 border-t border-slate-800/80">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold mb-3">
-            <Trophy className="w-3.5 h-3.5 text-yellow-400" />
-            Interactive Simulation Library
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-white mb-3">
-            Choose Your <span className="text-cyan-400">Satisfying Game</span>
-          </h2>
-          <p className="text-slate-400 max-w-xl mx-auto text-sm sm:text-base">
-            Click on any simulation to launch the dedicated studio, customize colors and motion, and record unlimited 60FPS vertical clips.
-          </p>
-        </div>
-
-        {/* 6 Game Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {GAMES_LIST.map((game) => {
-            const Icon = game.icon;
-            return (
-              <div
-                key={game.id}
-                className="group relative p-6 rounded-3xl bg-slate-900/70 border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between hover:shadow-xl hover:shadow-cyan-500/10"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-slate-800 to-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:text-white transition">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
-                      {game.tag}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-black text-white mb-2 group-hover:text-cyan-300 transition">
-                    {game.label}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6">
-                    {game.desc}
-                  </p>
-                </div>
-
+              <div className="flex flex-wrap items-center gap-3 pt-1">
                 <Link
-                  href={`/studio/?game=${game.id}`}
-                  className="w-full py-3 rounded-xl bg-slate-800 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 hover:text-black font-bold text-xs flex items-center justify-center gap-2 transition"
+                  href="/games/"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#C4FF2E] hover:bg-[#D4FF63] text-[#0B0B0C] text-sm font-semibold transition-colors"
                 >
-                  PLAY &amp; RECORD <ArrowRight className="w-3.5 h-3.5" />
+                  <Play className="w-4 h-4 fill-[#0B0B0C]" />
+                  <span>Explore Games</span>
+                </Link>
+                <Link
+                  href="/studio/"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#141416] hover:bg-[#1B1B1E] border border-[#29292D] text-[#F5F5F5] text-sm font-medium transition-colors"
+                >
+                  <Sliders className="w-4 h-4 text-[#C4FF2E]" />
+                  <span>Open Studio</span>
                 </Link>
               </div>
-            );
-          })}
-        </div>
-      </section>
 
-      {/* How It Works (3 Steps) */}
-      <section id="workflow" className="w-full max-w-6xl mx-auto px-4 py-16 border-t border-slate-800/80">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-black text-white mb-2">How It Works</h2>
-          <p className="text-slate-400 text-sm">Three easy steps to your next viral Short or Reel</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-3xl bg-slate-900/40 border border-slate-800 flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 font-black text-base flex items-center justify-center">
-              01
+              <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[#29292D]">
+                <div>
+                  <div className="text-lg font-semibold font-mono-tabular text-[#F5F5F5]">
+                    {GAMES_REGISTRY.length}
+                  </div>
+                  <div className="text-[11px] text-[#A1A1AA]">Playable Sims</div>
+                </div>
+                <div>
+                  <div className="text-lg font-semibold font-mono-tabular text-[#F5F5F5]">1080p</div>
+                  <div className="text-[11px] text-[#A1A1AA]">60 FPS MP4</div>
+                </div>
+                <div>
+                  <div className="text-lg font-semibold font-mono-tabular text-[#C4FF2E]">0</div>
+                  <div className="text-[11px] text-[#A1A1AA]">Watermarks</div>
+                </div>
+              </div>
             </div>
-            <h3 className="text-base font-bold text-white">Select a Simulation</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Pick from Bouncing Ball with Chimes, Country Marble Races, Ring Barrier Breakers, or Hydraulic Crushers.
-            </p>
-          </div>
 
-          <div className="p-6 rounded-3xl bg-slate-900/40 border border-slate-800 flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-xl bg-fuchsia-500/10 text-fuchsia-400 font-black text-base flex items-center justify-center">
-              02
-            </div>
-            <h3 className="text-base font-bold text-white">Customize Colors &amp; Hook</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Tweak neon palettes, gravity, rotation speeds, and type in viral hook captions like &quot;Wait for the end 😱&quot;.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-3xl bg-slate-900/40 border border-slate-800 flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-xl bg-yellow-500/10 text-yellow-400 font-black text-base flex items-center justify-center">
-              03
-            </div>
-            <h3 className="text-base font-bold text-white">Record &amp; Download MP4</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Click record (15s, 30s, or 60s). Browser renders and downloads a 1080×1920 60FPS video with ASMR audio ready to upload.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Viral Strategy Banner */}
-      <section id="viral" className="w-full max-w-5xl mx-auto px-4 py-12">
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-950 to-indigo-950/60 border border-slate-800">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-400/10 text-yellow-400 text-xs font-bold mb-3">
-            <Flame className="w-3.5 h-3.5" />
-            Viral Content Playbook
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
-            Why Satisfying Videos Dominate the Algorithm
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
-            TikTok and YouTube Shorts algorithms heavily favor videos with over <strong>100% average view duration</strong>. 
-            Because satisfying loops and country races build suspense, viewers watch until the very last second, triggering viral reach.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-4 rounded-2xl bg-black/50 border border-slate-800 text-xs">
-              <span className="font-bold text-cyan-400 block mb-1">Reddit Stories &amp; Podcasts</span>
-              <span className="text-slate-400">Layer satisfying gameplay underneath narration to prevent viewers from swiping away.</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-black/50 border border-slate-800 text-xs">
-              <span className="font-bold text-yellow-400 block mb-1">Country Flags Competition</span>
-              <span className="text-slate-400">Country battles drive thousands of comments (&quot;Comment your flag!&quot;), boosting algorithmic distribution.</span>
+            <div className="lg:col-span-7">
+              <HomeInteractiveHero />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ Section */}
-      <section id="faq" className="w-full max-w-4xl mx-auto px-4 py-14 border-t border-slate-800/80">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Frequently Asked Questions</h2>
-          <p className="text-slate-400 text-xs sm:text-sm">Everything you need to know about Satisfying Video Maker</p>
-        </div>
-
-        <div className="space-y-3.5">
-          <div className="p-5 rounded-2xl bg-slate-900/50 border border-slate-800">
-            <h3 className="text-sm font-bold text-white mb-1.5">Is Satisfying Video Maker really free?</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Yes, 100% free with no subscription, no watermark, and no login required. You can generate and download unlimited 60FPS vertical clips.
-            </p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-slate-900/50 border border-slate-800">
-            <h3 className="text-sm font-bold text-white mb-1.5">Can I monetize these videos on YouTube Shorts &amp; TikTok?</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Yes! All physics animations and ASMR audio generated by our browser tools are free for commercial use.
-            </p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-slate-900/50 border border-slate-800">
-            <h3 className="text-sm font-bold text-white mb-1.5">How is this different from Vidirexa / Vireel?</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Vidirexa limits free accounts to 2 watermarked videos and charges up to $30/month. CodeLove Satisfying is completely free, runs natively in your browser with no GPU cloud lag, and exports high-definition 60FPS MP4 files instantly.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* CodeLove Sister Network Footer */}
-      <footer className="w-full bg-[#04060d] border-t border-slate-800/80 px-4 sm:px-8 py-12 mt-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-6">
-            <h3 className="text-xs font-black text-white uppercase tracking-wider mb-1.5">CodeLove Network</h3>
-            <p className="text-xs text-slate-400 max-w-2xl">
-              Explore free web tools, 3D engines, AI video creators and games by CodeLove. Free forever, no install needed:
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5 mb-10">
-            {SITE.network.map((net) => (
-              <a
-                key={net.name}
-                href={net.url}
-                className="p-3 rounded-xl bg-slate-900/40 hover:bg-slate-900 border border-slate-800/60 hover:border-cyan-500/40 transition group"
+        {/* Trending Simulations */}
+        <section className="border-t border-[#29292D] bg-[#0B0B0C]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 space-y-6">
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-semibold text-[#F5F5F5]">
+                  Trending Simulations
+                </h2>
+                <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1">
+                  Live interactive previews running directly in your browser. Click any card to customize or record.
+                </p>
+              </div>
+              <Link
+                href="/games/"
+                className="inline-flex items-center gap-1 text-xs font-medium text-[#C4FF2E] hover:underline shrink-0"
               >
-                <div className="font-bold text-xs text-white group-hover:text-cyan-400 truncate">{net.name}</div>
-                <div className="text-[11px] text-slate-400 line-clamp-1">{net.desc}</div>
-              </a>
-            ))}
-          </div>
+                <span>View all {GAMES_REGISTRY.length}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-800/60 text-xs text-slate-500">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {trendingGames.map((game) => (
+                <GameCard key={game.id} game={game} showPreview={true} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Browse by Category */}
+        <section className="border-t border-[#29292D] bg-[#141416]/40">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 space-y-6">
             <div>
-              &copy; {new Date().getFullYear()} CodeLove. Created by{" "}
-              <a href={SITE.creatorUrl} className="text-slate-400 hover:text-white underline">
-                {SITE.creator}
-              </a>.
+              <h2 className="text-xl sm:text-2xl font-semibold text-[#F5F5F5]">
+                Browse by Category
+              </h2>
+              <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1">
+                Eight distinct simulation families built on Canvas 2D, Matter.js, and Three.js WebGL.
+              </p>
             </div>
-            <div className="flex gap-4">
-              <a href="https://codelove.in/about" className="hover:text-white transition">About</a>
-              <a href="https://codelove.in/contact" className="hover:text-white transition">Contact</a>
-              <a href="https://webly.codelove.in/privacy.html" className="hover:text-white transition">Privacy Policy</a>
-              <a href="https://webly.codelove.in/terms.html" className="hover:text-white transition">Terms of Service</a>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {CATEGORIES.map((cat) => {
+                const count = GAMES_REGISTRY.filter((g) => g.category === cat.id).length;
+                return (
+                  <Link
+                    key={cat.id}
+                    href={`/games/?category=${cat.id}`}
+                    className="p-4 rounded-lg bg-[#141416] border border-[#29292D] hover:border-[#C4FF2E]/60 transition-colors flex flex-col justify-between gap-3"
+                  >
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold text-[#F5F5F5]">{cat.label}</span>
+                        <span className="text-[11px] font-mono-tabular text-[#A1A1AA]">{count}</span>
+                      </div>
+                      <p className="text-xs text-[#A1A1AA] leading-relaxed">{cat.shortDesc}</p>
+                    </div>
+                    <span className="text-[11px] font-medium text-[#C4FF2E]">Browse category →</span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
-        </div>
-      </footer>
+        </section>
 
+        {/* Featured Vertical Video Examples (Real Live Loops) */}
+        <section className="border-t border-[#29292D]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 space-y-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-semibold text-[#F5F5F5]">
+                  Vertical Studio Formats
+                </h2>
+                <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1">
+                  Real-time 9:16 portrait canvases ready to record locally for Shorts, Reels, and TikTok.
+                </p>
+              </div>
+              <Link
+                href="/studio/"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#C4FF2E] hover:underline"
+              >
+                <span>Launch Video Studio</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {videoExamples.map((ex) => (
+                <div
+                  key={ex.game.id}
+                  className="bg-[#141416] border border-[#29292D] rounded-lg overflow-hidden flex flex-col"
+                >
+                  <div className="relative aspect-[9/12] bg-[#0B0B0C] border-b border-[#29292D]">
+                    <MiniSimulationPreview game={ex.game} width={360} height={480} />
+                    <div className="pointer-events-none absolute top-3 inset-x-3 text-center">
+                      <span className="inline-block px-2.5 py-1 rounded-full bg-[#0B0B0C]/80 border border-white/10 text-[11px] font-semibold text-[#F5F5F5]">
+                        {ex.caption}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4 flex items-center justify-between gap-3">
+                    <div>
+                      <div className="text-sm font-semibold text-[#F5F5F5]">{ex.game.name}</div>
+                      <div className="text-[11px] text-[#A1A1AA] mt-0.5">
+                        {ex.format} · {ex.sub}
+                      </div>
+                    </div>
+                    <Link
+                      href={`/studio/?game=${ex.game.id}`}
+                      className="px-3 py-1.5 rounded bg-[#1B1B1E] hover:bg-[#C4FF2E] hover:text-[#0B0B0C] border border-[#29292D] text-xs font-medium text-[#F5F5F5] transition-colors shrink-0"
+                    >
+                      Load in Studio
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="border-t border-[#29292D] bg-[#141416]/40">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 space-y-6">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-semibold text-[#F5F5F5]">How It Works</h2>
+              <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1">
+                From live physics simulation to finished MP4 file in four straightforward steps.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                {
+                  step: "01",
+                  title: "Choose",
+                  desc: `Pick any of the ${GAMES_REGISTRY.length} simulations across Physics, Ball Doublers, Marble Races, Crushing, Sand, Liquid, and Space.`,
+                },
+                {
+                  step: "02",
+                  title: "Customize",
+                  desc: "Adjust gravity, object counts, color themes, 3D camera angles, and synthesized ASMR sound.",
+                },
+                {
+                  step: "03",
+                  title: "Create",
+                  desc: "Set your canvas to 9:16, 16:9, or 1:1 and position live hook and CTA text overlays.",
+                },
+                {
+                  step: "04",
+                  title: "Export",
+                  desc: "Record in real time and encode locally via WebCodecs + mp4-muxer directly to your device.",
+                },
+              ].map((item) => (
+                <div key={item.step} className="p-5 rounded-lg bg-[#141416] border border-[#29292D] space-y-2">
+                  <div className="text-xs font-mono-tabular font-semibold text-[#C4FF2E]">{item.step}</div>
+                  <h3 className="text-base font-semibold text-[#F5F5F5]">{item.title}</h3>
+                  <p className="text-xs text-[#A1A1AA] leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Product Benefits */}
+        <section className="border-t border-[#29292D]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                {
+                  icon: ShieldCheck,
+                  title: "100% Free",
+                  desc: "No paywalled resolution locks, export limits, or subscription tiers.",
+                },
+                {
+                  icon: Ban,
+                  title: "No Watermark",
+                  desc: "Clean full-frame recordings without brand logos stamped over your clips.",
+                },
+                {
+                  icon: UserX,
+                  title: "No Login Required",
+                  desc: "Open any simulation or studio tool immediately without creating an account.",
+                },
+                {
+                  icon: Cpu,
+                  title: "Browser-Based",
+                  desc: "Physics, Web Audio, and MP4 encoding run locally—nothing is uploaded to a server.",
+                },
+              ].map((b) => {
+                const Icon = b.icon;
+                return (
+                  <div key={b.title} className="p-5 rounded-lg bg-[#141416] border border-[#29292D] space-y-2">
+                    <Icon className="w-4 h-4 text-[#C4FF2E]" />
+                    <h3 className="text-sm font-semibold text-[#F5F5F5]">{b.title}</h3>
+                    <p className="text-xs text-[#A1A1AA] leading-relaxed">{b.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 }

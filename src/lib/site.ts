@@ -1,30 +1,28 @@
+export { COLOR_PALETTES } from "./palettes";
+
 export const SITE = {
-  name: "Satisfying",
-  fullName: "CodeLove Satisfying — ASMR & Physics Simulation Video Maker",
+  name: "Satisfying Video Maker",
+  shortName: "Satisfying Studio",
+  fullName: "Satisfying Video Maker — Browser Physics Simulation & ASMR Video Studio",
   brand: "CodeLove",
   creator: "Gowtham",
   creatorUrl: "https://gowtham.codelove.in",
   url: "https://satisfying.codelove.in",
-  title: "Satisfying Video Maker: Free ASMR & Physics Shorts Generator",
-  description: "Create viral satisfying physics simulation videos for YouTube Shorts, Instagram Reels & TikTok. Marble race, bouncing ball in circle with ASMR chimes, vertical 9:16 60fps MP4 export. 100% free with no watermark.",
+  title: "Satisfying Video Maker — Play Physics Simulations & Export MP4 Videos",
+  description:
+    "Play 50+ satisfying physics simulations, customize visuals and synthesized ASMR audio, and export clean watermark-free MP4 videos directly in your browser.",
   keywords: [
     "satisfying video maker",
     "asmr video generator",
-    "bouncing ball in circle maker",
-    "marble race maker",
-    "physics simulation video maker",
-    "shorts background video generator",
-    "satisfying gameplay video maker",
-    "tiktok asmr video maker",
-    "youtube shorts satisfying background",
-    "bouncing ball with chimes",
-    "country marble race generator",
-    "vidirexa alternative",
-    "free vidirexa alternative",
-    "vireel alternative",
-    "relaxing asmr game maker",
+    "bouncing ball simulation",
+    "marble race generator",
+    "ring escape simulator",
+    "hydraulic press simulation",
+    "kinetic sand simulator",
+    "shorts background video maker",
+    "physics simulation playground",
+    "browser mp4 video studio",
     "codelove",
-    "codelove satisfying"
   ],
   network: [
     { name: "CodeLove Home", url: "https://codelove.in", desc: "Free online developer & creator tools" },
@@ -41,14 +39,5 @@ export const SITE = {
     { name: "JavaPlay", url: "https://javaplay.codelove.in", desc: "Play classic retro Java mobile games" },
     { name: "CodeLove Apps", url: "https://apps.codelove.in", desc: "Free Android mobile apps and utilities" },
     { name: "Gowtham", url: "https://gowtham.codelove.in", desc: "Creator portfolio & 3D developer" },
-  ]
+  ],
 };
-
-export const COLOR_PALETTES = [
-  { id: "cyber", name: "Cyber Neon", colors: ["#00F5FF", "#FF007F", "#7928CA", "#00FF66", "#FFE600", "#FF3366"], bg: "#0a0a14" },
-  { id: "candy", name: "Rainbow Candy", colors: ["#FF4365", "#00D9C0", "#FF9B71", "#FFD166", "#70C1B3", "#B185DB"], bg: "#0d1117" },
-  { id: "sunset", name: "Sunset Gold", colors: ["#FF5E36", "#FFAE33", "#FF2A6D", "#9B5DE5", "#F15BB5", "#FEE440"], bg: "#13091e" },
-  { id: "matrix", name: "Acid Matrix", colors: ["#39FF14", "#00FFCC", "#CCFF00", "#00E5FF", "#57FF22", "#9DFF00"], bg: "#051105" },
-  { id: "galaxy", name: "Deep Galaxy", colors: ["#B829DD", "#3B82F6", "#8B5CF6", "#EC4899", "#6366F1", "#06B6D4"], bg: "#050714" },
-  { id: "pastel", name: "Chill Pastel", colors: ["#FFB5E8", "#B28DFF", "#85E3FF", "#AFF8D8", "#FFCBC1", "#FFFFD1"], bg: "#12141d" },
-];
