@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import AdSenseScript from "@/components/AdSenseScript";
 import "./globals.css";
+import { GAMES_REGISTRY } from "@/lib/games";
 import { SITE } from "@/lib/site";
 
 const inter = Inter({
