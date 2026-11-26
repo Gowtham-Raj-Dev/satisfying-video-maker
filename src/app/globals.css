@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #060813;
+  --surface: #0c0f1d;
+  --surface-2: #13172c;
+  --line: #1e2442;
+  --fg: #ffffff;
+  --muted: #94a3b8;
+  --cyan: #00F5FF;
+  --pink: #FF007F;
+  --yellow: #FFE600;
+  --purple: #7928CA;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #1e2442 #060813;
+}
+
+/* Custom Neon Glows */
+.glow-cyan {
+  text-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
+}
+
+.glow-pink {
+  text-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+}
+
+.glow-box-cyan {
+  box-shadow: 0 0 30px rgba(0, 245, 255, 0.25);
+}
+
+.glow-box-pink {
+  box-shadow: 0 0 30px rgba(255, 0, 127, 0.25);
+}
+
+/* Custom slider thumb */
+input[type="range"] {
+  height: 6px;
+  border-radius: 9999px;
+  background: #1e2442;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
+}
