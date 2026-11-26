@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
+import AdSenseScript from "@/components/AdSenseScript";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 
@@ -106,21 +108,21 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        {/* Google AdSense site verification & script */}
+        {/* Google AdSense site verification */}
         <meta name="google-adsense-account" content="ca-pub-1282068947061740" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1282068947061740"
-          crossOrigin="anonymous"
-        />
-        {/* CodeLove Analytics (admin.codelove.in) */}
-        <script defer src="https://admin.codelove.in/t.js" />
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7XZ96YCVC" />
-        <script
+      </head>
+      <body className="bg-[#060813] text-white min-h-screen flex flex-col antialiased">
+        {children}
+        {/* Load AdSense, Analytics and Tracker smoothly after hydration */}
+        <AdSenseScript client="ca-pub-1282068947061740" />
+        <Script src="https://admin.codelove.in/t.js" strategy="afterInteractive" />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-E7XZ96YCVC" strategy="afterInteractive" />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -128,9 +130,6 @@ gtag('js', new Date());
 gtag('config', 'G-E7XZ96YCVC');`,
           }}
         />
-      </head>
-      <body className="bg-[#060813] text-white min-h-screen flex flex-col antialiased">
-        {children}
       </body>
     </html>
   );
