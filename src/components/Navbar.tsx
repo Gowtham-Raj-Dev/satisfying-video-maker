@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Sliders, Compass, Grid3X3, FolderHeart, Play } from "lucide-react";
+import { Menu, X, Sliders, Compass, Grid3X3, FolderHeart } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/explore/", label: "Explore", icon: Compass },
@@ -31,9 +31,20 @@ export default function Navbar() {
           href="/"
           className="flex items-center gap-2.5 text-[#F5F5F5] font-semibold text-sm sm:text-base tracking-tight shrink-0"
         >
-          <span className="w-7 h-7 rounded-md bg-[#C4FF2E] text-[#0B0B0C] flex items-center justify-center">
-            <Play className="w-3.5 h-3.5 fill-[#0B0B0C] translate-x-[1px]" />
-          </span>
+          <svg
+            viewBox="0 0 64 64"
+            className="w-7 h-7 rounded-md shrink-0"
+            aria-hidden="true"
+            fill="none"
+          >
+            <rect width="64" height="64" rx="14" fill="#141416" />
+            <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" stroke="#29292D" strokeWidth="2" />
+            <circle cx="32" cy="32" r="21" stroke="#38BDF8" strokeWidth="3" strokeOpacity="0.35" />
+            <path d="M16 18.5A21 21 0 0 1 51.5 24" stroke="#C4FF2E" strokeWidth="3.5" strokeLinecap="round" />
+            <circle cx="51.5" cy="24" r="3.5" fill="#38BDF8" />
+            <rect x="19" y="19" width="26" height="26" rx="7" fill="#C4FF2E" />
+            <path d="M27.5 24.5L39.5 32L27.5 39.5V24.5Z" fill="#0B0B0C" />
+          </svg>
           <span className="font-semibold">Satisfying Video Maker</span>
         </Link>
 
