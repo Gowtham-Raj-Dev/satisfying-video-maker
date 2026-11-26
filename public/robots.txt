@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://satisfying.codelove.in/sitemap.xml
+Sitemap: https://satisfying-video-maker.codelove.in/sitemap.xml

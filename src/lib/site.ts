@@ -7,10 +7,10 @@ export const SITE = {
   brand: "CodeLove",
   creator: "Gowtham",
   creatorUrl: "https://gowtham.codelove.in",
-  url: "https://satisfying.codelove.in",
+  url: "https://satisfying-video-maker.codelove.in",
   title: "Satisfying Video Maker — Play Physics Simulations & Export MP4 Videos",
   description:
-    "Play 50+ satisfying physics simulations, customize visuals and synthesized ASMR audio, and export clean watermark-free MP4 videos directly in your browser.",
+    "Play 97 interactive satisfying physics, particle, marble race & ASMR simulations, customize visuals and synthesized audio, and export clean watermark-free 60 FPS MP4 videos directly in your browser.",
   keywords: [
     "satisfying video maker",
     "asmr video generator",

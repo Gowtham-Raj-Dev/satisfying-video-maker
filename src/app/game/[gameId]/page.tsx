@@ -35,11 +35,13 @@ export async function generateMetadata({
       description: game.shortDesc,
       url: `${SITE.url}/game/${game.id}/`,
       type: "website",
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: `${game.name} | ${SITE.name}` }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${game.name} | ${SITE.name}`,
       description: game.shortDesc,
+      images: ["/og-image.png"],
     },
   };
 }
