@@ -37,6 +37,8 @@ export const SITE = {
     { name: "Video Cut", url: "https://videocut.codelove.in", desc: "Cut, trim & split video clips online" },
     { name: "UTubeFlow", url: "https://utubeflow.codelove.in", desc: "YouTube automation & video scheduler" },
     { name: "JavaPlay", url: "https://javaplay.codelove.in", desc: "Play classic retro Java mobile games" },
+    { name: "VOLTARC Arcade", url: "https://voltarc.codelove.in", desc: "Play 3,000+ instant HTML5 & 3D browser games" },
+    { name: "ILoveConvert", url: "https://iloveconvert.codelove.in", desc: "Free online file, image & developer converters" },
     { name: "CodeLove Apps", url: "https://apps.codelove.in", desc: "Free Android mobile apps and utilities" },
     { name: "Gowtham", url: "https://gowtham.codelove.in", desc: "Creator portfolio & 3D developer" },
   ],
